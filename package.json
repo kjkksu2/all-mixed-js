@@ -1,0 +1,12 @@
+{
+  "name": "all-mixed-react",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "markus",
+  "license": "ISC",
+  "homepage": "https://github.com/kjkksu2/all-mixed-js#readme"
+}
