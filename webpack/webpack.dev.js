@@ -9,7 +9,7 @@ module.exports = merge(common, {
   mode: "development",
   devtool: "eval-cheap-source-map",
   devServer: {
-    port: 9000,
+    port: 3000,
     hot: true,
     static: { directory: path.join(__dirname, "../dist") },
     devMiddleware: {
@@ -29,7 +29,7 @@ module.exports = merge(common, {
           {
             loader: "css-loader",
             options: {
-              module: {
+              modules: {
                 localIdentName: "[path][name]__[local]",
               },
             },

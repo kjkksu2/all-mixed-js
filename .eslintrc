@@ -8,5 +8,9 @@
   "env": {
     "node": true,
     "browser": true
+  },
+  "rules": {
+    "no-unused-vars": "off",
+    "no-empty": "off"
   }
 }

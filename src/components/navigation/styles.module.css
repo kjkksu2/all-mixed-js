@@ -1,0 +1,25 @@
+header {
+  background-color: #f6f8fc;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 80px;
+  padding: 30px;
+}
+
+header h1 {
+  font-size: 40px;
+  color: #5b6495;
+}
+
+nav ul {
+  display: flex;
+}
+
+nav li {
+  list-style: none;
+  margin-left: 20px;
+  font-size: 20px;
+  font-weight: 700;
+  color: #878893;
+}

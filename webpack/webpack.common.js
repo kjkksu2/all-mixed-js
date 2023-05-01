@@ -4,8 +4,10 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 module.exports = {
   entry: {
-    "custom-object": "./src/pages/custom-object",
-    polygons: "./src/pages/polygons",
+    global: "./src/components/global",
+    navigation: "./src/components/navigation",
+    custom: "./src/pages/custom",
+    canvas: "./src/pages/canvas",
   },
   output: {
     path: path.join(__dirname, "../dist"),
@@ -23,20 +25,20 @@ module.exports = {
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       filename: "index.html",
-      chunks: [],
-      title: "Custom Object",
+      chunks: ["global", "navigation"],
+      title: "Home",
       template: "./src/template.html",
     }),
     new HtmlWebpackPlugin({
-      filename: "custom-object/index.html",
-      chunks: ["custom-object"],
-      title: "Custom Object",
+      filename: "custom/index.html",
+      chunks: ["global", "navigation", "custom"],
+      title: "Custom",
       template: "./src/template.html",
     }),
     new HtmlWebpackPlugin({
-      filename: "polygons/index.html",
-      chunks: ["polygons"],
-      title: "Polygons",
+      filename: "canvas/index.html",
+      chunks: ["global", "navigation", "canvas"],
+      title: "Canvas",
       template: "./src/template.html",
     }),
   ],
