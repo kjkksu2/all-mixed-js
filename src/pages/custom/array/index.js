@@ -1,32 +1,30 @@
 /*
-Array.of
-Array.from
-Array.isArray
-
-Array.prototype.push (o)
-Array.prototype.pop (o)
-Array.prototype.unshift (o)
-Array.prototype.shift (o)
-Array.prototype.concat (o)
-Array.prototype.slice (o)
-Array.prototype.join (o)
-Array.prototype.fill (o)
-Array.prototype.includes (o)
-Array.prototype.flat (o)
 Array.prototype.sort (x)
-Array.prototype.forEach (o)
-Array.prototype.map (o)
-Array.prototype.filter (o)
-Array.prototype.reduce (o)
-Array.prototype.some
-Array.prototype.every
-Array.prototype.find
-Array.prototype.findIndex
 */
 
 class MyArray {
   constructor(values = []) {
     this.values = values;
+  }
+
+  static of(...items) {
+    return new MyArray(items);
+  }
+
+  static isArray(obj) {
+    if (obj === null || obj === undefined) return false;
+
+    return Object.getPrototypeOf(obj) === Array.prototype;
+  }
+
+  static from(arrayLike, mapFtn = (v) => v) {
+    const arr = new MyArray();
+
+    for (let i = 0; i < arrayLike.length; i++) {
+      arr.push(mapFtn(arrayLike[i], i));
+    }
+
+    return arr;
   }
 
   push(...items) {
@@ -224,5 +222,45 @@ class MyArray {
     }
 
     return acc;
+  }
+
+  find(callback) {
+    for (let i = 0; i < this.values.length; i++) {
+      if (callback(this.values[i], i, this.values)) {
+        return this.values[i];
+      }
+    }
+
+    return undefined;
+  }
+
+  findIndex(callback) {
+    for (let i = 0; i < this.values.length; i++) {
+      if (callback(this.values[i], i, this.values)) {
+        return i;
+      }
+    }
+
+    return -1;
+  }
+
+  some(callback) {
+    for (let i = 0; i < this.values.length; i++) {
+      if (callback(this.values[i], i, this.values)) {
+        return true;
+      }
+    }
+
+    return false;
+  }
+
+  every(callback) {
+    for (let i = 0; i < this.values.length; i++) {
+      if (!callback(this.values[i], i, this.values)) {
+        return false;
+      }
+    }
+
+    return true;
   }
 }
