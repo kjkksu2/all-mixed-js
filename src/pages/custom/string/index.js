@@ -3,7 +3,7 @@
     String.prototype.replace (x)
 */
 
-class MyString {
+const MyStringString = `class MyString {
   constructor(value = "") {
     this.value = value;
   }
@@ -201,4 +201,6 @@ class MyString {
 
     return false;
   }
-}
+}`;
+
+export default MyStringString;

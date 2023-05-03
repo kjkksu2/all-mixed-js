@@ -23,18 +23,8 @@ module.exports = merge(common, {
   module: {
     rules: [
       {
-        test: /\.module\.css$/,
-        use: [
-          "style-loader",
-          {
-            loader: "css-loader",
-            options: {
-              modules: {
-                localIdentName: "[path][name]__[local]",
-              },
-            },
-          },
-        ],
+        test: /\.css$/,
+        use: ["style-loader", "css-loader"],
       },
     ],
   },

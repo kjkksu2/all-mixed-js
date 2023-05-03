@@ -2,7 +2,7 @@
     Array.prototype.sort (x)  
 */
 
-class MyArray {
+const MyArrayString = `class MyArray {
   constructor(values = []) {
     this.values = values;
   }
@@ -152,35 +152,6 @@ class MyArray {
     return res.values;
   }
 
-  sort(compareFtn) {
-    if (compareFtn === undefined) {
-      [...this.values].sort();
-      return;
-    }
-
-    function bubbleSort(arr, mode) {
-      const res = [...arr];
-
-      for (let i = 0; i < res.length; i++) {
-        for (let j = i + 1; j < res.length; j++) {
-          if (res[i] > res[j]) {
-            const temp = res[i];
-            res[i] = res[j];
-            res[j] = temp;
-          }
-        }
-      }
-
-      return res;
-    }
-
-    for (let i = 0; i < this.values.length - 1; i++) {
-      if (compareFtn(this.values[i], this.values[i + 1]) > 0) {
-        bubbleSort(this.values, i, i + 1);
-      }
-    }
-  }
-
   forEach(callback) {
     for (let i = 0; i < this.values.length; i++) {
       callback(this.values[i], i, this.values);
@@ -263,4 +234,6 @@ class MyArray {
 
     return true;
   }
-}
+}`;
+
+export default MyArrayString;

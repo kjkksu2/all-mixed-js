@@ -15,6 +15,13 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.txt$/,
+        type: "asset/resource",
+        generator: {
+          filename: "./custom/[name][ext]",
+        },
+      },
+      {
         test: /\.js$/,
         exclude: /node_modules/,
         loader: "babel-loader",
@@ -27,19 +34,19 @@ module.exports = {
       filename: "index.html",
       chunks: ["global", "navigation"],
       title: "Home",
-      template: "./src/template.html",
+      template: "./src/pages/custom/template.html",
     }),
     new HtmlWebpackPlugin({
       filename: "custom/index.html",
       chunks: ["global", "navigation", "custom"],
       title: "Custom",
-      template: "./src/template.html",
+      template: "./src/pages/custom/template.html",
     }),
     new HtmlWebpackPlugin({
       filename: "canvas/index.html",
       chunks: ["global", "navigation", "canvas"],
       title: "Canvas",
-      template: "./src/template.html",
+      template: "./src/pages/custom/template.html",
     }),
   ],
 };
