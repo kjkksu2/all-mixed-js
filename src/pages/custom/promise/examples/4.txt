@@ -1,0 +1,15 @@
+new MyPromise((resolve, reject) => {
+  reject("error");
+})
+  .then(() => {
+    console.log("then");
+  })
+  .catch(console.log);
+
+new MyPromise((resolve, reject) => {
+  setTimeout(() => reject("error"), 2000);
+})
+  .then(() => {
+    console.log("then");
+  })
+  .catch(console.log);

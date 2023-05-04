@@ -41,25 +41,25 @@ const MyStringString = `class MyString {
   }
 
   padStart(length, padString = " ") {
-    const str = new MyString();
+    let str = "";
 
     length -= this.value.length;
     while (length > 0) {
-      str.value += padString;
+      str += padString;
       length--;
     }
+    str += this.value;
 
-    str.value += this.value;
     return str;
   }
 
   padEnd(length, padString = " ") {
-    const str = new MyString();
-    str.value += this.value;
+    let str = "";
 
+    str += this.value;
     length -= this.value.length;
     while (length > 0) {
-      str.value += padString;
+      str += padString;
       length--;
     }
 
@@ -67,14 +67,17 @@ const MyStringString = `class MyString {
   }
 
   repeat(count) {
+    if (count < 0 || typeof count !== "number" || !isFinite(count)) {
+      return "RangeError";
+    }
+  
     count = Math.floor(count);
-
     let str = "";
     while (count > 0) {
       str += this.value;
       count--;
     }
-
+  
     return str;
   }
 

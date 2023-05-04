@@ -2,85 +2,90 @@
     Promise.resolve
     Promise.reject
     Promise.all
-    비동기 때, then chainable 구현
 */
 
-function MyPromise(executor) {
+const MyPromiseString = `function MyPromise(executor) {
   const PENDING = "PENDING";
   const FULFILLED = "FULFILLED";
   const REJECTED = "REJECTED";
 
   let status = PENDING;
-  let data = null;
-  let onFulfilled = null;
-  let onRejected = null;
+  
+  let fulfilledData = [];
+  let rejectedData = [];
+
+  let onFulfilled = [];
+  let onRejected = [];
 
   function resolve(value) {
     if (status !== PENDING) return;
 
     status = FULFILLED;
-    data = value;
+    fulfilledData.push(value);
 
-    onFulfilled && onFulfilled(data);
+    if (onFulfilled.length > 0) {
+      onFulfilled.forEach((v) => {
+        const returnedValue = v(fulfilledData.shift());
+        // fulfilledData.push(returnedValue);
+        console.log(returnedValue);
+        return new MyPromise((resolve) => resolve(returnedValue));
+      });
+    }
   }
 
   function reject(reason) {
     if (status !== PENDING) return;
 
     status = REJECTED;
-    data = reason;
+    rejectedData.push(reason);
 
-    onRejected && onRejected(data);
+    if (onRejected.length > 0) {
+      onRejected.forEach((v) => {
+        const returnedValue = v(rejectedData.shift());
+        console.log(returnedValue);
+        fulfilledData.push(returnedValue);
+        return new MyPromise((resolve) => resolve(returnedValue));
+      });
+    }
   }
 
   this.then = function (fulfilledCallback) {
-    // catch에서 에러 처리
-    if (status === REJECTED) return this;
+    // rejected면 무시
+    if (status === REJECTED) {
+      fulfilledData.shift();
+      return this;
+    }
 
     switch (status) {
       case PENDING:
-        onFulfilled = fulfilledCallback;
-        break;
+        onFulfilled.push(fulfilledCallback);
+        return this;
       case FULFILLED: {
-        const returnedValue = fulfilledCallback(data);
+        const returnedValue = fulfilledCallback(fulfilledData.shift());
         return new MyPromise((resolve) => resolve(returnedValue));
       }
     }
   };
 
   this.catch = function (rejectedCallback) {
+    // fulfilled면 무시
+    if(status === FULFILLED) {
+      rejectedData.shift();
+      return this;
+    }
+
     switch (status) {
       case PENDING:
-        onRejected = rejectedCallback;
-        break;
+        onRejected.push(rejectedCallback);
+        return this;
       case REJECTED: {
-        const returnedValue = rejectedCallback(data);
+        const returnedValue = rejectedCallback(rejectedData.shift());
         return new MyPromise((resolve) => resolve(returnedValue));
       }
     }
   };
 
   executor(resolve, reject);
-}
+}`;
 
-const p1 = new newPromise((resolve, reject) => {
-  setTimeout(() => resolve("markus"), 3000);
-})
-  .then((response) => {
-    console.log(`Hi, ${response}`);
-    return "hi";
-  })
-  .then((a) => {
-    console.log(a);
-  });
-
-// const p2 = new Promise((resolve, reject) => {
-//   setTimeout(() => resolve("markus"), 3000);
-// })
-//   .then((response) => {
-//     console.log(`Hi, ${response}`);
-//     return "hi";
-//   })
-//   .then((a) => {
-//     console.log(a);
-//   });
+export default MyPromiseString;

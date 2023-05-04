@@ -1,0 +1,5 @@
+console.log(MyArray.from('foo'));
+// Expected output: Array ["f", "o", "o"]
+
+console.log(MyArray.from([1, 2, 3], x => x + x));
+// Expected output: Array [2, 4, 6]

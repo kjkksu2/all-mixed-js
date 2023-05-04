@@ -1,0 +1,19 @@
+/*
+new MyPromise((resolve, reject) => {
+  resolve("markus");
+})
+  .then((response) => {
+    window.a(`Hi, ${response}`);
+    return "bye";
+  })
+  .then(window.a);
+*/
+
+new MyPromise((resolve, reject) => {
+  setTimeout(() => resolve("markus"), 2000);
+})
+  .then((response) => {
+    window.a(`Hi, ${response}`);
+    return "bye";
+  })
+  .then(window.a);
