@@ -46,7 +46,7 @@ module.exports = {
       filename: "canvas/index.html",
       chunks: ["global", "navigation", "canvas"],
       title: "Canvas",
-      template: "./src/pages/custom/template.html",
+      template: "./src/pages/canvas/template.html",
     }),
   ],
 };
