@@ -1,6 +1,6 @@
 // 여기서 동적 import
 import "./styles.css";
-
+import DOMPurify from "dompurify";
 import ConnectDomElement from "./class/connectDomElement";
 import Format from "./class/format";
 import Components from "./class/components";
@@ -34,11 +34,15 @@ class CustomObject extends Components {
         Format.paramIsString() +
         Format.paramIsObject() +
         super.overridingConsole() +
-        e.target.value;
+        DOMPurify.sanitize(e.target.value);
     });
 
     this.start.addEventListener("click", () => {
-      eval(this.code);
+      try {
+        eval(this.code);
+      } catch (e) {
+        this.terminal.textContent = `Error: ${e.message}`;
+      }
     });
 
     this.reset.addEventListener("click", () => {
