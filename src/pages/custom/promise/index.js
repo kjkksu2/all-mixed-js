@@ -2,6 +2,7 @@
     Promise.resolve
     Promise.reject
     Promise.all
+    try...catch는 동작 안함.
 */
 
 const MyPromiseString = `function MyPromise(executor) {
@@ -11,25 +12,28 @@ const MyPromiseString = `function MyPromise(executor) {
 
   let status = PENDING;
   
-  let fulfilledData = [];
-  let rejectedData = [];
+  let fulfilledData = null;
+  let rejectedData = null;
 
   let onFulfilled = [];
   let onRejected = [];
+  let numberOfThenBeforeCatch = null;
 
   function resolve(value) {
     if (status !== PENDING) return;
 
     status = FULFILLED;
-    fulfilledData.push(value);
-
+    fulfilledData = value;
+    
+    // 비동기
     if (onFulfilled.length > 0) {
-      onFulfilled.forEach((v) => {
-        const returnedValue = v(fulfilledData.shift());
-        // fulfilledData.push(returnedValue);
-        console.log(returnedValue);
-        return new MyPromise((resolve) => resolve(returnedValue));
-      });
+      const fulfilledCallback = onFulfilled[0];
+      const returnedValue = fulfilledCallback(fulfilledData);
+      const newMyPromise = new MyPromise((resolve) => resolve(returnedValue));
+
+      for(let i = 1; i < onFulfilled.length; i++) {
+        newMyPromise.then(onFulfilled[i]);
+      }
     }
   }
 
@@ -37,31 +41,30 @@ const MyPromiseString = `function MyPromise(executor) {
     if (status !== PENDING) return;
 
     status = REJECTED;
-    rejectedData.push(reason);
+    rejectedData = reason;
 
+    // 비동기
     if (onRejected.length > 0) {
-      onRejected.forEach((v) => {
-        const returnedValue = v(rejectedData.shift());
-        console.log(returnedValue);
-        fulfilledData.push(returnedValue);
-        return new MyPromise((resolve) => resolve(returnedValue));
-      });
+      const rejectedCallback = onRejected[0];
+      const returnedValue = rejectedCallback(rejectedData);
+      const newMyPromise = new MyPromise((resolve) => resolve(returnedValue));
+
+      for(let i = numberOfThenBeforeCatch; i < onFulfilled.length; i++) {
+        newMyPromise.then(onFulfilled[i]);
+      }
     }
   }
 
   this.then = function (fulfilledCallback) {
     // rejected면 무시
-    if (status === REJECTED) {
-      fulfilledData.shift();
-      return this;
-    }
+    if (status === REJECTED) return this;
 
     switch (status) {
       case PENDING:
         onFulfilled.push(fulfilledCallback);
         return this;
       case FULFILLED: {
-        const returnedValue = fulfilledCallback(fulfilledData.shift());
+        const returnedValue = fulfilledCallback(fulfilledData);
         return new MyPromise((resolve) => resolve(returnedValue));
       }
     }
@@ -69,17 +72,17 @@ const MyPromiseString = `function MyPromise(executor) {
 
   this.catch = function (rejectedCallback) {
     // fulfilled면 무시
-    if(status === FULFILLED) {
-      rejectedData.shift();
-      return this;
-    }
+    if(status === FULFILLED) return this;
 
     switch (status) {
       case PENDING:
+        if(!numberOfThenBeforeCatch){
+          numberOfThenBeforeCatch = onFulfilled.length;
+        }
         onRejected.push(rejectedCallback);
         return this;
       case REJECTED: {
-        const returnedValue = rejectedCallback(rejectedData.shift());
+        const returnedValue = rejectedCallback(rejectedData);
         return new MyPromise((resolve) => resolve(returnedValue));
       }
     }

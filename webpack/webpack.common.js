@@ -18,7 +18,7 @@ module.exports = {
         test: /\.txt$/,
         type: "asset/resource",
         generator: {
-          filename: "./custom/[name][ext]",
+          filename: "custom/[name][ext]",
         },
       },
       {
