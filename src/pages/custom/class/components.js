@@ -34,17 +34,13 @@ class Components {
             case "array": {
               if (Object.getPrototypeOf(value) === Array.prototype) {
                 terminal.innerHTML +=
-                  modifyCommaPosition(
-                    makeArrayTypeStringAndDividedByComma("", value)
-                  ) + "\\n";
+                  modifyCommaPosition(makeArrayTypeStringAndDividedByComma("", value)) + "\\n";
                 break;
               }
       
               if (Object.getPrototypeOf(value) === MyArray.prototype) {
                 terminal.innerHTML +=
-                  modifyCommaPosition(
-                    makeArrayTypeStringAndDividedByComma("", value.values)
-                  ) + "\\n";
+                  modifyCommaPosition(makeArrayTypeStringAndDividedByComma("", value.values)) + "\\n";
                 break;
               }
       
@@ -80,9 +76,7 @@ class Components {
             case "promise": {
               if (Object.getPrototypeOf(value) === Array.prototype) {
                 terminal.innerHTML +=
-                  modifyCommaPosition(
-                    makeArrayTypeStringAndDividedByComma("", value)
-                  ) + "\\n";
+                  modifyCommaPosition(makeArrayTypeStringAndDividedByComma("", value)) + "\\n";
                 break;
               }
   
@@ -93,6 +87,11 @@ class Components {
   
               if (Object.getPrototypeOf(value) === Object.prototype) {
                 terminal.innerHTML += removeLastComma(makeObjectTypeStringAndDividedByComma(value)) + "\\n";
+                break;
+              }
+
+              if (Object.getPrototypeOf(value) === MyPromise.prototype) {
+                terminal.innerHTML += 'MyPromise { then: f, catch: f }' + "\\n";
                 break;
               }
   

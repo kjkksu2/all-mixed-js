@@ -1,11 +1,24 @@
+// 동기
 new MyPromise((resolve, reject) => {
   resolve("markus");
 }).then((response) => {
   console.log(`Hi, ${response}`);
 });
 
+const p1 = new MyPromise((resolve, reject) => {
+  resolve("markus");
+});
+p1.then(console.log);
+
+
+// 비동기
 new MyPromise((resolve, reject) => {
   setTimeout(() => resolve("peter"), 2000);
 }).then((response) => {
   console.log(`Hi, ${response}`);
 });
+
+const p2 = new MyPromise((resolve, reject) => {
+  setTimeout(() => resolve("peter"), 2000);
+});
+p2.then(console.log);

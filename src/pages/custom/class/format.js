@@ -65,6 +65,7 @@ class Format {
         function makeObjectTypeStringAndDividedByComma(obj) {
           let str = "";
           str += "{ ";
+          
           for (const v of Object.keys(obj)) {
             if (Object.getPrototypeOf(obj[v]) === Array.prototype) {
               str += v + ": " + "Array(" + obj[v].length + ")" + ", ";

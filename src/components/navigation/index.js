@@ -16,6 +16,12 @@ const nav = `
           <li>
             <a href="/optimization">optimization</a>
           </li>
+          <li>
+            <a href="#">Web API</a>
+          </li>
+          <li>
+            <a href="#">react</a>
+          </li>
         </ul>
       </nav>
     </header>
