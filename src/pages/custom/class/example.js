@@ -1,4 +1,4 @@
-// import "../promise/examples/9.txt";
+// import "../promise/examples/1.txt";
 import "../array/examples/prototype/filter.txt";
 
 class Example {
