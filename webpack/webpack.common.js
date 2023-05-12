@@ -11,9 +11,22 @@ module.exports = {
   },
   output: {
     path: path.join(__dirname, "../dist"),
+    publicPath: "http://localhost:3000/",
   },
   module: {
     rules: [
+      {
+        test: /\.(png|jpg)$/,
+        type: "asset",
+        parser: {
+          dataUrlCondition: {
+            maxSize: 4 * 1024, // 4kb 이상이면 asset/resource, 4kb 미만이면 asset/inline
+          },
+        },
+        generator: {
+          filename: "canvas/[name][ext]",
+        },
+      },
       {
         test: /\.txt$/,
         type: "asset/resource",
