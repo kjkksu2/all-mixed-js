@@ -1,5 +1,6 @@
 // 여기서 동적 import
 import "./styles.css";
 
-import "./polygon";
-// import "./momentum";
+import "./chart";
+// import "./breakOut";
+// import "./polygon";

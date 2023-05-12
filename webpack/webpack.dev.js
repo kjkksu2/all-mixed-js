@@ -19,6 +19,7 @@ module.exports = merge(common, {
     client: { overlay: true },
     liveReload: false,
     historyApiFallback: true,
+    open: true,
   },
   module: {
     rules: [

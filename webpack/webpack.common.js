@@ -4,7 +4,7 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 module.exports = {
   entry: {
-    global: "./src/global",
+    global: "./src/global/styles.css",
     navigation: "./src/components/navigation",
     custom: "./src/pages/custom",
     canvas: "./src/pages/canvas",
