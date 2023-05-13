@@ -1,17 +1,19 @@
 import Screen from "./screen";
 import Status from "./config/status";
-import Components from "./components";
+import Animation from "./animation";
+import Configuration from "./config/configuration";
 
-class FlappyBird {
+class FlappyBird extends Configuration {
   constructor(canvas) {
+    super(canvas);
     this.canvas = canvas;
     this.bindEvents();
   }
 
   start() {
-    this.components = new Components(this.canvas);
-    this.screen = new Screen(this.canvas, this.components);
-    this.screen.animate();
+    this.animation = new Animation(this.canvas);
+    this.screen = new Screen(this.canvas, this.animation);
+    this.screen.checkStatus();
   }
 
   bindEvents() {
@@ -19,8 +21,10 @@ class FlappyBird {
       switch (this.screen.status) {
         case Status.INITIAL:
           this.screen.status = Status.PLAYING;
+          this.animation.createObjects(); // create
           break;
         case Status.PLAYING:
+          this.animation.character.vy = -1 * this.velocity;
           break;
       }
     });
@@ -30,6 +34,7 @@ class FlappyBird {
         switch (this.screen.status) {
           case Status.END:
             this.screen.status = Status.PLAYING;
+            this.animation.createObjects(); // reset
             break;
         }
       }

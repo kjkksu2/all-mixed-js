@@ -1,17 +1,28 @@
-import Components from "./components";
-import Background from "./components/background";
 import Configuration from "./config/configuration";
 import Status from "./config/status";
 
 class Screen extends Configuration {
-  constructor(canvas, components) {
+  constructor(canvas, animation) {
     super(canvas);
-    this.canvas = canvas;
-    this.status = Status.PLAYING;
-    this.background = new Background(this.canvas);
+
+    this.status = Status.INITIAL;
+    this.animation = animation;
+    this.style();
   }
 
-  animate() {
+  style() {
+    // backdrop
+    this.backdropFillColor = "black";
+
+    // text
+    this.textFillColor = "white";
+    this.textStyle = "normal";
+    this.textWeight = "bold";
+    this.textSize = "45";
+    this.textFamily = "verdana";
+  }
+
+  checkStatus() {
     switch (this.status) {
       case Status.INITIAL:
         this.initial();
@@ -24,7 +35,7 @@ class Screen extends Configuration {
         break;
     }
 
-    window.requestAnimationFrame(this.animate.bind(this));
+    window.requestAnimationFrame(this.checkStatus.bind(this));
   }
 
   initial() {
@@ -41,37 +52,62 @@ class Screen extends Configuration {
     this.ctx.textBaseline = "middle";
 
     // text draw
-    this.ctx.fillText("INITIAL", this.canvas.width / 2, this.canvas.height / 2);
+    this.ctx.fillText(
+      "Click to Start!",
+      this.canvas.width / 2,
+      this.canvas.height / 2
+    );
   }
 
   playing() {
-    // background
-    this.background.draw();
-    this.background.x -= 5;
+    // clear
+    this.animation.clear();
+
+    // update
+    this.animation.update();
+
+    // draw
+    this.animation.draw();
+
+    // check collision
+    if (this.animation.isCollided()) {
+      this.status = Status.END;
+    }
   }
 
   end() {
-    // backdrop style
+    // backdrop
     this.ctx.fillStyle = this.backdropFillColor;
 
-    // backdrop draw
     this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
 
-    // status style
+    // score
+    this.ctx.fillStyle = this.textFillColor;
+    this.ctx.font = `${this.textStyle} ${this.textWeight} ${
+      +this.textSize + 20
+    }px ${this.textFamily}`;
+    this.ctx.textAlign = "center";
+    this.ctx.textBaseline = "middle";
+
+    this.ctx.fillText(
+      `Your Score: ${this.animation.score.value}`,
+      this.canvas.width / 2,
+      this.canvas.height / 2 - 120
+    );
+
+    // status
     this.ctx.fillStyle = this.textFillColor;
     this.ctx.font = `${this.textStyle} ${this.textWeight} ${this.textSize}px ${this.textFamily}`;
     this.ctx.textAlign = "center";
     this.ctx.textBaseline = "middle";
 
-    // status draw
     this.ctx.fillText("END", this.canvas.width / 2, this.canvas.height / 2);
 
-    // message style
+    // message
     this.ctx.font = `${this.textStyle} ${this.textWeight} ${
-      this.textSize - 20
+      +this.textSize - 20
     }px ${this.textFamily}`;
 
-    // message draw
     this.ctx.fillText(
       "Press R to restart!",
       this.canvas.width / 2,
