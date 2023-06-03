@@ -4,14 +4,19 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 module.exports = {
   entry: {
-    global: "./src/global/styles.css",
+    global: "./src/global",
     navigation: "./src/components/navigation",
-    custom: "./src/pages/custom",
+    myArray: "./src/pages/myArray",
     canvas: "./src/pages/canvas",
   },
   output: {
     path: path.join(__dirname, "../dist"),
     publicPath: "http://localhost:3000/",
+  },
+  optimization: {
+    // entry point가 여러 개면 hot module이 동작 안함.
+    // https://github.com/pmmmwh/react-refresh-webpack-plugin/issues/88#issuecomment-627558799
+    runtimeChunk: "single",
   },
   module: {
     rules: [
@@ -31,12 +36,16 @@ module.exports = {
         test: /\.txt$/,
         type: "asset/resource",
         generator: {
-          filename: "custom/[name][ext]",
+          filename: (pathData) => {
+            const filePath = path.dirname(pathData.filename).split("/")[2];
+            return `${filePath}/[name][ext]`;
+          },
         },
       },
       {
         test: /\.js$/,
-        exclude: /node_modules/,
+        // exclude: /(node_modules|myArray.js)/,
+        exclude: /(node_modules)/,
         loader: "babel-loader",
       },
     ],
@@ -44,17 +53,29 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
-      filename: "index.html",
-      chunks: ["global", "navigation"],
-      title: "Home",
-      template: "./src/pages/custom/template.html",
+      filename: "myArray/index.html",
+      chunks: ["global", "navigation", "myArray"],
+      title: "MyArray",
+      template: "./src/pages/myArray/index.html",
     }),
-    new HtmlWebpackPlugin({
-      filename: "custom/index.html",
-      chunks: ["global", "navigation", "custom"],
-      title: "Custom",
-      template: "./src/pages/custom/template.html",
-    }),
+    // new HtmlWebpackPlugin({
+    //   filename: "index.html",
+    //   chunks: ["global", "navigation"],
+    //   title: "Home",
+    //   template: "./src/pages/custom/template.html",
+    // }),
+    // new HtmlWebpackPlugin({
+    //   filename: "index.html",
+    //   chunks: ["global", "navigation"],
+    //   title: "Home",
+    //   template: "./src/pages/custom/template.html",
+    // }),
+    // new HtmlWebpackPlugin({
+    //   filename: "custom/index.html",
+    //   chunks: ["global", "navigation", "custom"],
+    //   title: "Custom",
+    //   template: "./src/pages/custom/template.html",
+    // }),
     new HtmlWebpackPlugin({
       filename: "canvas/index.html",
       chunks: ["global", "navigation", "canvas"],

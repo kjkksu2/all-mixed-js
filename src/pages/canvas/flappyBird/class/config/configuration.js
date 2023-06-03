@@ -6,8 +6,8 @@ class Configuration {
     this.canvas = canvas;
     this.ctx = this.canvas.getContext("2d");
 
-    this.canvas.width = 1000;
-    this.canvas.height = 700;
+    this.canvas.width = 900;
+    this.canvas.height = 600;
   }
 }
 

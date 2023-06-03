@@ -18,7 +18,7 @@ class Screen extends Configuration {
     this.textFillColor = "white";
     this.textStyle = "normal";
     this.textWeight = "bold";
-    this.textSize = "45";
+    this.textSize = "35";
     this.textFamily = "verdana";
   }
 
