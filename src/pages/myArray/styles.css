@@ -4,13 +4,13 @@
   width: 850px;
 }
 
-.editor h3 {
+h3 {
   padding: 10px 20px;
   font-size: 20px;
   border-bottom: 2px solid rgba(0, 0, 0, 0.2);
 }
 
-.editor textarea {
+.terminal {
   width: calc(100% - 20px);
   height: 300px;
   resize: none;
@@ -19,12 +19,12 @@
   margin: 5px 10px;
 }
 
-.result {
+.execution {
   display: flex;
   padding: 5px 10px;
 }
 
-.result .buttons {
+.execution div {
   width: 10%;
   display: flex;
   flex-direction: column;
@@ -32,7 +32,7 @@
   margin-right: 5px;
 }
 
-.result button {
+.execution div button {
   padding: 10px;
   background-color: transparent;
   border-radius: 5px;
@@ -40,11 +40,11 @@
   font-size: 15px;
   border: 1px solid black;
 }
-.result button:hover {
+.execution div button:hover {
   background-color: #cdcdcd;
 }
 
-.result .terminal {
+.execution .console {
   flex: 1;
   border: 1px solid black;
   height: 170px;

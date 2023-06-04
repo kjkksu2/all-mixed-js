@@ -2,13 +2,12 @@
 import "./styles.css";
 
 import DOMPurify from "dompurify";
-import DomElement from "./components/DomElement";
-import Format from "./components/format";
+import DomElements from "./components/domElements";
 import MyArray from "./components/myArray";
 import Console from "./components/console";
 import Example from "./components/example";
 
-class CustomObject extends DomElement {
+class CustomObject extends DomElements {
   constructor() {
     super();
     this.code = null;
@@ -21,37 +20,35 @@ class CustomObject extends DomElement {
 
   async init() {
     this.code =
-      DomElement.stringify() +
-      new MyArray().convertToString() +
-      Format.initialize() +
-      Console.print() +
+      new DomElements().stringify() +
+      new MyArray().stringify() +
+      new Console().stringify() +
       (await Example.text());
 
-    this.textarea.value = await Example.text();
+    this.terminal.value = await Example.text();
   }
 
   bindEvents() {
-    this.textarea.addEventListener("change", (e) => {
+    this.terminal.addEventListener("change", (e) => {
       this.code =
-        DomElement.stringify() +
-        new MyArray().convertToString() +
-        Format.initialize() +
-        Console.print() +
+        new DomElements().stringify() +
+        new MyArray().stringify() +
+        new Console().stringify() +
         DOMPurify.sanitize(e.target.value);
     });
 
-    this.start.addEventListener("click", () => {
+    this.startBtn.addEventListener("click", () => {
       try {
         eval(this.code);
       } catch (e) {
         console.error(e);
-        this.terminal.textContent = `Error: ${e.message}`;
+        this.console.textContent = `Error: ${e.message}`;
       }
     });
 
-    this.reset.addEventListener("click", () => {
+    this.resetBtn.addEventListener("click", () => {
       this.init();
-      this.terminal.textContent = "";
+      this.console.textContent = "";
     });
   }
 }

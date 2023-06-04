@@ -1,81 +1,67 @@
 class Format {
-  static initialize() {
-    let str1 = "";
-    for (const v of this.#paramIsArray()) {
-      str1 += v.toString();
-    }
+  // 매개변수가 array인 경우
+  static #array() {}
+  // static #array() {
+  //   // type을 array에서 string으로 바꾸고 ,로 나누는 함수
+  //   // ex) [1, 2, 3]
+  //   function makeArrayTypeStringAndDividedByComma(str = "", arr) {
+  //     str += "[";
 
-    let str2 = "";
-    for (const v of this.#paramIsString()) {
-      str2 += v.toString();
-    }
+  //     for (let i = 0; i < arr.length; i++) {
+  //       if (Object.getPrototypeOf(arr[i]) === Array.prototype) {
+  //         str = makeArrayTypeStringAndDividedByComma(str, arr[i]);
+  //       } else {
+  //         if (typeof arr[i] === "string") {
+  //           str += '"' + arr[i] + '"' + ", ";
+  //         } else {
+  //           str += arr[i] + ", ";
+  //         }
+  //       }
+  //     }
+  //     str += "]";
 
-    let str3 = "";
-    for (const v of this.#paramIsObject()) {
-      str3 += v.toString();
-    }
+  //     return str;
+  //   }
 
-    return str1 + str2 + str3;
-  }
+  //   function modifyCommaPosition(str) {
+  //     let res = "";
+  //     let strIdx = 0;
 
-  static #paramIsArray() {
-    function makeArrayTypeStringAndDividedByComma(str = "", arr) {
-      str += "[";
+  //     while (strIdx < str.length) {
+  //       if (str[strIdx] + str[strIdx + 1] + str[strIdx + 2] === ", ]") {
+  //         res += str[strIdx + 2];
+  //         strIdx += 3;
+  //       } else if (str[strIdx - 1] + str[strIdx] === "][") {
+  //         res += ", " + str[strIdx];
+  //         strIdx++;
+  //       } else {
+  //         res += str[strIdx];
+  //         strIdx++;
+  //       }
+  //     }
 
-      for (let i = 0; i < arr.length; i++) {
-        if (Object.getPrototypeOf(arr[i]) === Array.prototype) {
-          str = makeArrayTypeStringAndDividedByComma(str, arr[i]);
-        } else {
-          if (typeof arr[i] === "string") {
-            str += '"' + arr[i] + '"' + ", ";
-          } else {
-            str += arr[i] + ", ";
-          }
-        }
-      }
-      str += "]";
+  //     return res;
+  //   }
 
-      return str;
-    }
+  //   function modifyResultOfSplit(arr) {
+  //     let str = "[";
+  //     for (var i = 0; i < arr.length - 1; i++) {
+  //       str += '"' + arr[i] + '", ';
+  //     }
+  //     str += '"' + arr[i] + '"]';
 
-    function modifyCommaPosition(str) {
-      let res = "";
-      let strIdx = 0;
+  //     return str;
+  //   }
 
-      while (strIdx < str.length) {
-        if (str[strIdx] + str[strIdx + 1] + str[strIdx + 2] === ", ]") {
-          res += str[strIdx + 2];
-          strIdx += 3;
-        } else if (str[strIdx - 1] + str[strIdx] === "][") {
-          res += ", " + str[strIdx];
-          strIdx++;
-        } else {
-          res += str[strIdx];
-          strIdx++;
-        }
-      }
+  //   return [
+  //     makeArrayTypeStringAndDividedByComma,
+  //     modifyCommaPosition,
+  //     modifyResultOfSplit,
+  //   ];
+  // }
 
-      return res;
-    }
-
-    function modifyResultOfSplit(arr) {
-      let str = "[";
-      for (var i = 0; i < arr.length - 1; i++) {
-        str += '"' + arr[i] + '", ';
-      }
-      str += '"' + arr[i] + '"]';
-
-      return str;
-    }
-
-    return [
-      makeArrayTypeStringAndDividedByComma,
-      modifyCommaPosition,
-      modifyResultOfSplit,
-    ];
-  }
-
-  static #paramIsString() {
+  // 매개변수가 string인 경우
+  static #string() {
     function modifyResultOfString(str) {
       return '"' + str + '"';
     }
@@ -83,7 +69,8 @@ class Format {
     return [modifyResultOfString];
   }
 
-  static #paramIsObject() {
+  // 매개변수가 object인 경우
+  static #object() {
     function makeObjectTypeStringAndDividedByComma(obj) {
       let str = "";
       str += "{ ";
@@ -122,6 +109,25 @@ class Format {
     }
 
     return [makeObjectTypeStringAndDividedByComma, removeLastComma];
+  }
+
+  static stringify() {
+    let str1 = "";
+    for (const v of this.#array()) {
+      str1 += v.toString();
+    }
+
+    let str2 = "";
+    for (const v of this.#string()) {
+      str2 += v.toString();
+    }
+
+    let str3 = "";
+    for (const v of this.#object()) {
+      str3 += v.toString();
+    }
+
+    return str1 + str2 + str3;
   }
 }
 
