@@ -4,7 +4,7 @@ import "./styles.css";
 import DOMPurify from "dompurify";
 import DomElements from "./components/domElements";
 import MyArray from "./components/myArray";
-import Console from "./components/console";
+import Output from "./components/output";
 import Example from "./components/example";
 
 class CustomObject extends DomElements {
@@ -22,19 +22,25 @@ class CustomObject extends DomElements {
     this.code =
       new DomElements().stringify() +
       new MyArray().stringify() +
-      new Console().stringify() +
+      new Output().stringify() +
       (await Example.text());
+
+    // console.log(this.code);
 
     this.terminal.value = await Example.text();
   }
 
   bindEvents() {
     this.terminal.addEventListener("change", (e) => {
+      const dirtyInput = DOMPurify.sanitize(e.target.value);
+      let cleanInput = dirtyInput.replaceAll("&lt;", "<");
+      cleanInput = cleanInput.replaceAll("&gt;", ">");
+
       this.code =
         new DomElements().stringify() +
         new MyArray().stringify() +
-        new Console().stringify() +
-        DOMPurify.sanitize(e.target.value);
+        new Output().stringify() +
+        cleanInput;
     });
 
     this.startBtn.addEventListener("click", () => {
@@ -42,13 +48,13 @@ class CustomObject extends DomElements {
         eval(this.code);
       } catch (e) {
         console.error(e);
-        this.console.textContent = `Error: ${e.message}`;
+        this.output.textContent = `Error: ${e.message}`;
       }
     });
 
     this.resetBtn.addEventListener("click", () => {
       this.init();
-      this.console.textContent = "";
+      this.output.textContent = "";
     });
   }
 }

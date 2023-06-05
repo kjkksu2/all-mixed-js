@@ -44,7 +44,7 @@ h3 {
   background-color: #cdcdcd;
 }
 
-.execution .console {
+.execution .output {
   flex: 1;
   border: 1px solid black;
   height: 170px;

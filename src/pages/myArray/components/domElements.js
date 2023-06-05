@@ -16,12 +16,12 @@ class DomElements {
         value: ".execution button:last-of-type",
       },
       {
-        name: "console",
-        value: ".console",
+        name: "output",
+        value: ".output",
       }
     );
 
-    // const textarea = document.querySelector(".editor textarea");
+    // const terminal = document.querySelector(".terminal");
     for (const obj of this.#cssSelectors) {
       this[obj.name] = document.querySelector(obj.value);
     }

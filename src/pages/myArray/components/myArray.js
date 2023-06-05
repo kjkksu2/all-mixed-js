@@ -239,9 +239,12 @@ class MyArray {
     return true;
   }
 
-  // es5이하에서도 동작해야 한다. 그러니 class 대신 생성자 함수로 구현하자.
+  /* 
+    es5이하에서도 동작해야 한다.
+    그러니 class 대신 생성자 함수로 구현하자.
+  */
   stringify() {
-    // babel에서 사용하는 _classCallCheck 함수 제거
+    // babel이 내부적으로 사용하는 _classCallCheck 함수 제거
     let str = MyArray.toString()
       .split("_classCallCheck(this, MyArray);")
       .join("");
