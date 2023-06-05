@@ -1,39 +1,15 @@
 class DomElements {
-  #cssSelectors = [];
-
   constructor() {
-    this.#cssSelectors.push(
-      {
-        name: "terminal",
-        value: ".terminal",
-      },
-      {
-        name: "startBtn",
-        value: ".execution button:first-of-type",
-      },
-      {
-        name: "resetBtn",
-        value: ".execution button:last-of-type",
-      },
-      {
-        name: "output",
-        value: ".output",
-      }
-    );
-
-    // const terminal = document.querySelector(".terminal");
-    for (const obj of this.#cssSelectors) {
-      this[obj.name] = document.querySelector(obj.value);
-    }
+    this.terminal = document.querySelector(".terminal");
+    this.startBtn = document.querySelector(".execution button:first-of-type");
+    this.resetBtn = document.querySelector(".execution button:last-of-type");
+    this.output = document.querySelector(".output");
   }
 
   stringify() {
-    let str = "";
-
-    for (const obj of this.#cssSelectors) {
-      str +=
-        `const ${obj.name} = document.querySelector("${obj.value}");` + "\n";
-    }
+    let str = DomElements.toString()
+      .split("_classCallCheck(this, DomElements);")
+      .join("");
 
     return str;
   }
