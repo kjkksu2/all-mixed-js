@@ -1,11 +1,6 @@
 import DomElements from "./domElements";
 
 class Output extends DomElements {
-  /*
-    eval이 평가하는 코드는 const output = document.querySelector(".output")이다.
-    따라서, this.output이 아니라 output으로 적어야 한다.
-    value는 console.log의 인자다.
-  */
   print(value) {
     if (value === undefined) {
       this.output.innerHTML += "undefined" + "\n";
@@ -42,27 +37,37 @@ class Output extends DomElements {
     this.output.innerHTML += value + "\n";
   }
 
-  connection() {
-    function Output() {
-      DomElements.call(this);
-    }
-
-    Output.prototype = Object.create(DomElements.prototype);
-    DomElements.prototype.constructor = DomElements;
-  }
-
   /* 
     es5이하에서도 동작해야 한다.
-    extends 키워드 말고 직접 연결하자.
+    extends 키워드 사용하지 말고 직접 연결하자.
   */
   stringify() {
     let str = "";
 
-    str += this.connection;
+    // Output의 인스턴스를 DomElements에게 전달함.
+    str += "function Output() { DomElements.call(this); };";
 
-    console.log(str);
+    // Output이 DomElements를 상속 받음.
+    str += "Output.prototype = Object.create(DomElements.prototype);";
 
-    str += `const a = ${(value) => this.print(value)};`;
+    // Output.prototype 객체의 print 함수를 string으로 만듦.
+    Object.defineProperties(Output.prototype, {
+      print: { enumerable: true },
+    });
+
+    for (const v in this) {
+      const ftnName = this[v].name;
+      const ftn = this[v].toString().replace(ftnName, "");
+      if (ftnName && ftn) {
+        str += `Output.prototype.${ftnName} = ${ftn};`;
+      }
+    }
+
+    // Output 인스턴스 생성
+    str += "const output = new Output();";
+
+    // overide console.log
+    str += `console.log = function (value) { output.print(value); };`;
 
     return str;
   }

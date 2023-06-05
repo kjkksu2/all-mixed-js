@@ -1,8 +1,8 @@
-import "../examples/prototype/filter.txt";
+import "../examples/prototype/join.txt";
 
 class Test {
   static async example() {
-    return await fetch("./filter.txt").then((response) => response.text());
+    return await fetch("./join.txt").then((response) => response.text());
   }
 }
 
