@@ -5,7 +5,7 @@ import DOMPurify from "dompurify";
 import DomElements from "./components/domElements";
 import MyArray from "./components/myArray";
 import Output from "./components/output";
-import Example from "./components/example";
+import Test from "./components/test";
 
 class CustomObject extends DomElements {
   constructor() {
@@ -14,20 +14,16 @@ class CustomObject extends DomElements {
     this.bindEvents();
   }
 
-  // stringify() {
-  //   return MyArray.toString();
-  // }
-
   async init() {
+    const example = await Test.example();
+
     this.code =
       new DomElements().stringify() +
       new MyArray().stringify() +
       new Output().stringify() +
-      (await Example.text());
+      example;
 
-    // console.log(this.code);
-
-    this.terminal.value = await Example.text();
+    this.terminal.value = example;
   }
 
   bindEvents() {
