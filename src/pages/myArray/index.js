@@ -1,6 +1,7 @@
 // 여기서 동적 import
 import "./styles.css";
 
+// webpack-bundler
 import DOMPurify from "dompurify";
 import DomElements from "./components/domElements";
 import MyArray from "./components/myArray";
@@ -29,8 +30,9 @@ class CustomObject extends DomElements {
   bindEvents() {
     this.terminal.addEventListener("change", (e) => {
       const dirtyInput = DOMPurify.sanitize(e.target.value);
-      let cleanInput = dirtyInput.replaceAll("&lt;", "<");
-      cleanInput = cleanInput.replaceAll("&gt;", ">");
+      const cleanInput = dirtyInput
+        .replaceAll("&lt;", "<")
+        .replaceAll("&gt;", ">");
 
       this.code =
         new DomElements().stringify() +

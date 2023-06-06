@@ -7,6 +7,7 @@ class DomElements {
   }
 
   stringify() {
+    // babel이 내부적으로 사용하는 _classCallCheck 함수 제거
     let str = DomElements.toString()
       .split("_classCallCheck(this, DomElements);")
       .join("");

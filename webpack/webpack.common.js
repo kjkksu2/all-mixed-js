@@ -54,7 +54,6 @@ module.exports = {
     new HtmlWebpackPlugin({
       filename: "myArray/index.html",
       chunks: ["global", "navigation", "myArray"],
-      title: "MyArray",
       template: "./src/pages/myArray/index.html",
     }),
     // new HtmlWebpackPlugin({

@@ -47,10 +47,10 @@ class Output extends DomElements {
     // Output의 인스턴스를 DomElements에게 전달함.
     str += "function Output() { DomElements.call(this); };";
 
-    // Output이 DomElements를 상속 받음.
+    // Output.prototype이 DomElements.prototype을 상속 받음.
     str += "Output.prototype = Object.create(DomElements.prototype);";
 
-    // Output.prototype 객체의 print 함수를 string으로 만듦.
+    // Output.prototype의 print 함수를 string으로 만듦.
     Object.defineProperties(Output.prototype, {
       print: { enumerable: true },
     });
