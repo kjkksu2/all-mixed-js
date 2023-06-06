@@ -1,8 +1,8 @@
 // 여기서 동적 import
+import "./common";
 import "./styles.css";
 
-// webpack-bundler
-import DOMPurify from "dompurify";
+import DOMPurify from "dompurify"; // webpack-bundler
 import DomElements from "./components/domElements";
 import MyArray from "./components/myArray";
 import Output from "./components/output";

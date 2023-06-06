@@ -4,8 +4,6 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 module.exports = {
   entry: {
-    global: "./src/global",
-    navigation: "./src/components/navigation",
     myArray: "./src/pages/myArray",
     canvas: "./src/pages/canvas",
   },
@@ -53,7 +51,7 @@ module.exports = {
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       filename: "myArray/index.html",
-      chunks: ["global", "navigation", "myArray"],
+      chunks: ["myArray"],
       template: "./src/pages/myArray/index.html",
     }),
     // new HtmlWebpackPlugin({
@@ -74,11 +72,11 @@ module.exports = {
     //   title: "Custom",
     //   template: "./src/pages/custom/template.html",
     // }),
-    new HtmlWebpackPlugin({
-      filename: "canvas/index.html",
-      chunks: ["global", "navigation", "canvas"],
-      title: "Canvas",
-      template: "./src/pages/canvas/template.html",
-    }),
+    // new HtmlWebpackPlugin({
+    //   filename: "canvas/index.html",
+    //   chunks: ["global", "navigation", "canvas"],
+    //   title: "Canvas",
+    //   template: "./src/pages/canvas/template.html",
+    // }),
   ],
 };
