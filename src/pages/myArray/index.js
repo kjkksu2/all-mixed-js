@@ -6,17 +6,18 @@ import DOMPurify from "dompurify"; // webpack-bundler
 import DomElements from "./components/domElements";
 import MyArray from "./components/myArray";
 import Output from "./components/output";
-import Test from "./components/test";
+import Dropdown from "./components/dropdown";
 
 class CustomObject extends DomElements {
   constructor() {
     super();
     this.code = null;
     this.bindEvents();
+    this.dropdown = new Dropdown(this.init.bind(this));
   }
 
   async init() {
-    const example = await Test.example();
+    const example = await this.dropdown.example();
 
     this.code =
       new DomElements().stringify() +
@@ -25,6 +26,7 @@ class CustomObject extends DomElements {
       example;
 
     this.terminal.value = example;
+    this.output.textContent = "";
   }
 
   bindEvents() {

@@ -1,5 +1,7 @@
 class DomElements {
   constructor() {
+    this.dropdownBtn = document.querySelector(".dropdown .btn");
+    this.dropdownContent = document.querySelector(".dropdown .content");
     this.terminal = document.querySelector(".terminal");
     this.startBtn = document.querySelector(".execution button:first-of-type");
     this.resetBtn = document.querySelector(".execution button:last-of-type");
