@@ -11,6 +11,9 @@ const nav = `
             <a href="/myArray">myArray</a>
           </li>
           <li>
+            <a href="/myString">myString</a>
+          </li>
+          <li>
             <a href="/canvas">canvas</a>
           </li>
           <li>

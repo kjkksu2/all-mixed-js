@@ -1,0 +1,8 @@
+const str1 = new MyString('abc');
+
+console.log(str1.repeat(-1));   // RangeError
+console.log(str1.repeat(0));    // ''
+console.log(str1.repeat(1));    // 'abc'
+console.log(str1.repeat(2));    // 'abcabc'
+console.log(str1.repeat(3.5));  // 'abcabcabc' (count will be converted to integer)
+console.log(str1.repeat(1/0));  // RangeError

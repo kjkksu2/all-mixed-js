@@ -1,19 +1,19 @@
 import DomElements from "./domElements";
 
-import { prototypeList, staticList } from "./data";
+import { prototypeList } from "./data";
 
 class Dropdown extends DomElements {
   constructor(init) {
     super();
     this.init = init;
-    this.selected = "filter";
+    this.selected = "endsWith";
     this.createOptions();
     this.bindEvents();
   }
 
   createOptions() {
     const fragment = document.createDocumentFragment();
-    const list = [...prototypeList, ...staticList];
+    const list = [...prototypeList];
 
     list.forEach((v) => {
       const div = document.createElement("div");
@@ -45,7 +45,7 @@ class Dropdown extends DomElements {
   }
 
   async example() {
-    return await fetch(`./myArray/${this.selected}.txt`).then((response) =>
+    return await fetch(`./myString/${this.selected}.txt`).then((response) =>
       response.text()
     );
   }

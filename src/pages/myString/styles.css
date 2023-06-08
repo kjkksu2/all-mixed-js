@@ -1,0 +1,120 @@
+.myString-container {
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  width: 850px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+}
+
+.header h3 {
+  font-size: 20px;
+}
+
+.header .dropdown {
+  font-size: 13px;
+  font-weight: 700;
+  user-select: none;
+  position: relative;
+}
+
+.header .dropdown .btn {
+  display: flex;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 7px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: border 0.2s;
+}
+.header .dropdown .btn:hover {
+  border: 1px solid rgba(0, 0, 0, 0.7);
+}
+
+.header .dropdown .btn .icon {
+  width: 22px;
+  font-weight: bold;
+}
+
+.header .dropdown .btn span {
+  font-size: 15px;
+  margin-left: 5px;
+}
+
+.header .dropdown .content {
+  display: none;
+  position: absolute;
+  top: 120%;
+  right: 0;
+  width: 150%;
+  height: 200px;
+  overflow-y: scroll;
+  padding: 10px;
+  background-color: #fff;
+  box-shadow: 3px 3px 10px 6px rgba(0, 0, 0, 0.06);
+  font-weight: 500;
+  color: #333;
+  border-radius: 5px;
+  font-size: 15px;
+  line-height: 180%;
+}
+.header .dropdown .content.active {
+  display: block;
+}
+
+.header .dropdown .content .item {
+  transition: all 0.2s;
+  cursor: pointer;
+}
+.header .dropdown .content .item:hover {
+  color: #00a8ff;
+}
+
+.terminal {
+  width: calc(100% - 20px);
+  height: 300px;
+  resize: none;
+  padding: 10px 15px;
+  font-size: 15px;
+  margin: 5px 10px;
+}
+
+.execution {
+  display: flex;
+  padding: 5px 10px;
+}
+
+.execution div {
+  width: 10%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-right: 5px;
+}
+
+.execution div button {
+  padding: 10px;
+  background-color: transparent;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 15px;
+  border: 1px solid black;
+}
+.execution div button:hover {
+  background-color: #cdcdcd;
+}
+
+.execution .output {
+  flex: 1;
+  border: 1px solid black;
+  height: 170px;
+  padding: 10px 15px;
+  font-size: 15px;
+  margin-bottom: 10px;
+  white-space: pre;
+  overflow: scroll;
+}
