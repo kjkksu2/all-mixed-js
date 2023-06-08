@@ -49,7 +49,7 @@ dropdown의 item을 클릭하면 이벤트가 발생하도록 만들 수도 있�
 
 그래서 이 item들의 상위 parent인 dropdown에게 이벤트를 위임했습니다.
 
-error propagation은 eval에서 에러가 발생하면 상위 실행 컨텍스트인 함수 실행 컨텍스트에서 에러를 처리하도록 구현했습니다.
+또한, eval에서 에러가 발생하면 eval의 상위 실행 컨텍스트에서 에러를 처리하도록 구현했습니다.
 
 ### 4. `console.log` overriding
 
@@ -63,6 +63,6 @@ console은 window 전역 객체의 메서드입니다.
 
 이를 막기 위해 `dompurify` 라이브러리를 사용했습니다.
 
-## 어려웠던 부분
+## 힘들었던 부분
 
-eval이 사용하는 코드가 string 형태라서 babel이 transpiling을 못해 직접 es5이하 문법으로 구현해야 했던 점이 힘들었습니다.
+babel로 transpiling 못하는 코드를 직접 es5이하 문법으로 구현해야 했던 점이 힘들었습니다.
