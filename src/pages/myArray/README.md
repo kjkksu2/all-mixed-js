@@ -29,7 +29,7 @@ gif 넣어주고
 
 해당 부분의 코드는 관련 포스팅을 참조해주세요.
 
-### 1. class & constructor
+### 1. class & constructor function
 
 eval은 string을 자바스크립트로 실행시키는 함수입니다.
 
