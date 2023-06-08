@@ -33,23 +33,23 @@ gif 넣어주고
 
 eval은 string을 자바스크립트로 실행시키는 함수입니다.
 
-class가 ES6+이므로 ES5이하에서 동작하는 constructor function을 사용해 모든 브라우저에서 동작하도록 만들었습니다.
+class가 ES6+이므로 <span style="color: #e74c3c">ES5이하에서 동작하는 constructor function</span>을 사용해 모든 브라우저에서 동작하도록 만들었습니다.
 
 ### 2. prototype chain
 
 `MyArray.prototype` 객체에 저장되어 있는 메서드들을 전부 가져와서 eval이 사용할 수 있는 코드로 바꾸려고 했습니다.
 
-이를 위해 순회문으로 메서드들을 가져와서 string으로 복사한 후에 eval에 넣으려고 했지만 enumerable이 false라서 불가능했습니다.
+이를 위해 순회문으로 메서드들을 가져와서 string으로 복사한 후에 eval에 넣으려고 했지만 <span style="color: #e74c3c">enumerable이 false</span>라서 불가능했습니다.
 
-그래서 이 부분을 true로 바꾼 후에 코드를 완성했습니다.
+그래서 이 부분을 <span style="color: #e74c3c">true</span>로 바꾼 후에 코드를 완성했습니다.
 
 ### 3. event & error propagation
 
 dropdown의 item을 클릭하면 이벤트가 발생하도록 만들 수도 있지만 비효율적입니다.
 
-그래서 이 item들의 상위 parent인 dropdown에게 이벤트를 위임했습니다.
+그래서 이 item들의 <span style="color: #e74c3c">상위 parent인 dropdown에게 이벤트를 위임</span>했습니다.
 
-error propagation은 eval에서 에러가 발생하면 상위 실행 컨텍스트인 함수 실행 컨텍스트에서 에러를 처리하도록 구현했습니다.
+error propagation은 eval에서 에러가 발생하면 상위 실행 컨텍스트인 <span style="color: #e74c3c">함수 실행 컨텍스트에서 에러를 처리</span>하도록 구현했습니다.
 
 ### 4. `console.log` overriding
 
