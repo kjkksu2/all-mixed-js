@@ -73,18 +73,6 @@ module.exports = {
     //   template: "./src/pages/custom/template.html",
     // }),
     // new HtmlWebpackPlugin({
-    //   filename: "index.html",
-    //   chunks: ["global", "navigation"],
-    //   title: "Home",
-    //   template: "./src/pages/custom/template.html",
-    // }),
-    // new HtmlWebpackPlugin({
-    //   filename: "custom/index.html",
-    //   chunks: ["global", "navigation", "custom"],
-    //   title: "Custom",
-    //   template: "./src/pages/custom/template.html",
-    // }),
-    // new HtmlWebpackPlugin({
     //   filename: "canvas/index.html",
     //   chunks: ["global", "navigation", "canvas"],
     //   title: "Canvas",
