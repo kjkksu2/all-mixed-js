@@ -17,6 +17,9 @@ const nav = `
             <a href="/myPromise">myPromise</a>
           </li>
           <li>
+            <a href="/polygon">polygon</a>
+          </li>
+          <li>
             <a href="/canvas">canvas</a>
           </li>
           <li>
