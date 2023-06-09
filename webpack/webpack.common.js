@@ -5,6 +5,7 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 module.exports = {
   entry: {
     myArray: "./src/pages/myArray",
+    myPromise: "./src/pages/myPromise",
     myString: "./src/pages/myString",
     canvas: "./src/pages/canvas",
   },
@@ -54,6 +55,11 @@ module.exports = {
       filename: "myArray/index.html",
       chunks: ["myArray"],
       template: "./src/pages/myArray/index.html",
+    }),
+    new HtmlWebpackPlugin({
+      filename: "myPromise/index.html",
+      chunks: ["myPromise"],
+      template: "./src/pages/myPromise/index.html",
     }),
     new HtmlWebpackPlugin({
       filename: "myString/index.html",

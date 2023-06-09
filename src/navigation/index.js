@@ -14,6 +14,9 @@ const nav = `
             <a href="/myString">myString</a>
           </li>
           <li>
+            <a href="/myPromise">myPromise</a>
+          </li>
+          <li>
             <a href="/canvas">canvas</a>
           </li>
           <li>
