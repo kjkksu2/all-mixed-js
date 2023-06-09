@@ -1,7 +1,0 @@
-new MyPromise((resolve, reject) => {
-  resolve({ name: "markus", city: "seoul" });
-}).then(console.log);
-
-new MyPromise((resolve, reject) => {
-  setTimeout(() => resolve({ name: "markus", city: "seoul" }), 2000);
-}).then(console.log);

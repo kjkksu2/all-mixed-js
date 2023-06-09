@@ -1,4 +1,0 @@
-const array1 = new MyArray([1, 30, 39, 29, 10, 13]);
-
-console.log(array1.every((currentValue) => currentValue < 40));
-// Expected output: true
