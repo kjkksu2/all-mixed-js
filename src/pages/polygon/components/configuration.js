@@ -5,8 +5,11 @@ class Configuration {
     this.canvas = canvas;
     this.ctx = this.canvas.getContext("2d");
 
-    this.canvas.width = 900;
-    this.canvas.height = 600;
+    this.form = document.querySelector(".sides form");
+    this.input = this.form.querySelector("input");
+
+    this.canvas.width = 700;
+    this.canvas.height = 400;
 
     this.init();
     this.style();
@@ -17,7 +20,7 @@ class Configuration {
     this.angle = 360 / this.sides;
     this.centerX = this.canvas.width / 2;
     this.centerY = this.canvas.height / 2;
-    this.radius = 200;
+    this.radius = 150;
   }
 
   style() {

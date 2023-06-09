@@ -104,6 +104,19 @@ class Polygon extends Configuration {
       this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
       this.draw(Hover.check(this.coordinates, { x: mouseX, y: mouseY }));
     });
+
+    this.form.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      // 지우고
+      this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
+      // 다시 그림
+      this.sides = this.input.value;
+      this.angle = 360 / this.sides;
+      this.draw();
+      this.input.value = "";
+    });
   }
 }
 
