@@ -1,0 +1,17 @@
+new MyPromise((resolve, reject) => {
+  resolve("markus");
+})
+  .then((response) => {
+    console.log(`Hi, ${response}`);
+    return "bye";
+  })
+  .then(console.log);
+
+new MyPromise((resolve, reject) => {
+  setTimeout(() => resolve("markus"), 2000);
+})
+  .then((response) => {
+    console.log(`Hi, ${response}`);
+    return "bye";
+  })
+  .then((response)=>console.log(response));

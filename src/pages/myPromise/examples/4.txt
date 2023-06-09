@@ -1,0 +1,28 @@
+// 동기
+new MyPromise((resolve, reject) => {
+  reject("error");
+})
+  .then(() => {
+    console.log("then");
+  })
+  .catch(console.log);
+
+const p1 = new MyPromise((resolve, reject) => {
+  reject("error");
+});
+p1.catch(console.log);
+
+
+// 비동기
+new MyPromise((resolve, reject) => {
+  setTimeout(() => reject("error"), 2000);
+})
+  .then(() => {
+    console.log("then");
+  })
+  .catch(console.log);
+
+const p2 = new MyPromise((resolve, reject) => {
+  setTimeout(() => reject("error"), 2000);
+});
+p2.catch(console.log);

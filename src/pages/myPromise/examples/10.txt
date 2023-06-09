@@ -1,0 +1,23 @@
+new MyPromise((resolve, reject) => {
+  resolve({ name: [1, 2, 3], city: "seoul" });
+}).then(console.log);
+
+new MyPromise((resolve, reject) => {
+  resolve({ name: [1, { korea: "seoul" }, 3], city: "seoul" });
+}).then(console.log);
+
+new MyPromise((resolve, reject) => {
+  resolve({ name: [1, [{ korea: "seoul" }, { japan: "tokyo" }], 3], city: "seoul" });
+}).then(console.log);
+
+new MyPromise((resolve, reject) => {
+  resolve({ name: { korea: "seoul", japan: "tokyo" }, city: "seoul" });
+}).then(console.log);
+
+new MyPromise((resolve, reject) => {
+  resolve({ name: { korea: { number: 1, string: "hello" }, japan: "tokyo" }, city: "seoul" });
+}).then(console.log);
+
+new MyPromise((resolve, reject) => {
+  resolve({ name: [{ korea: "seoul" }, { japan: "tokyo" }], city: "seoul" });
+}).then(console.log);

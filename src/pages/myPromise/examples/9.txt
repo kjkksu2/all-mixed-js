@@ -1,0 +1,31 @@
+new MyPromise((resolve, reject) => {
+  reject("error");
+})
+  .then((response) => {
+    console.log(`Hi, ${response}`);
+    return "bye";
+  })
+  .then(() => {
+    console.log("then");
+  })
+  .catch((error) => {
+    console.log(error);
+    return "restart!";
+  })
+  .then(console.log);
+
+new MyPromise((resolve, reject) => {
+  setTimeout(() => reject("error"), 2000);
+})
+  .then((response) => {
+    console.log(`Hi, ${response}`);
+    return "bye";
+  })
+  .then(() => {
+    console.log("then");
+  })
+  .catch((error) => {
+    console.log(error);
+    return "restart!";
+  })
+  .then(console.log);
