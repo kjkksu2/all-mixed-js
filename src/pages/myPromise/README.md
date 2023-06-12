@@ -19,6 +19,7 @@ gif 넣어주고
 ## keypoint
 
 - MyPromise 동작 원리
+- closure
 - object를 인자로 받았을 때 어떻게 출력되는가
 - (참고) async/await
 
@@ -37,14 +38,24 @@ gif 넣어주고
 - onRejected: 비동기인 경우, catch의 콜백 함수들 저장
 - numberOfThenBeforeCatch: status가 rejected일 때, catch 앞에 있는 then의 개수
 
-### 2. object를 인자로 받았을 때 어떻게 출력되는가
+### 2. closure
+
+클로저는 본인의 상위 렉시컬 환경을 참조하는 함수입니다.
+
+따라서, 이론적으로는 모든 함수가 클로저입니다.
+
+그러나 통상적으로 자유 변수를 사용하는 함수를 클로저라고 합니다.
+
+자세한 건 관련 포스팅에서 설명하겠습니다.
+
+### 3. object를 인자로 받았을 때 어떻게 출력되는가
 
 여기서는 식별자들의 역할만 간단히 설명하겠습니다.
 
 - arrayFormat: 인자가 array일 때, 출력을 담당하는 함수
 - objectFormat: 인자가 object일 때, 출력을 담당하는 함수
 
-### 3. (참고) async/await
+### 4. (참고) async/await
 
 프로젝트에서는 사용하지 않았지만 Promise와 밀접한 연관이 있는 async/await도 포스팅에 정리했습니다.
 
