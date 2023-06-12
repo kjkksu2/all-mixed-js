@@ -8,6 +8,9 @@ const nav = `
       <nav>
         <ul>
           <li>
+            <a href="/chart">chart</a>
+          </li>
+          <li>
             <a href="/myArray">myArray</a>
           </li>
           <li>
