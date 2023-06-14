@@ -24,7 +24,7 @@ gif 넣어주고
 
 ### 1. y축 label 설정
 
-먼저 upperBound를 잡고, y축 label 개수에 맞춰 label과 label 사이를 균등하게 나눴습니다.
+먼저 upperBound를 잡고, y축 label 개수에 맞춰 label값과 label값의 차이를 구했습니다.
 
 ## 힘들었던 부분
 
