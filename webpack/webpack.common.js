@@ -5,6 +5,7 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 module.exports = {
   entry: {
     chart: "./src/pages/chart",
+    drag: "./src/pages/drag",
     myArray: "./src/pages/myArray",
     myPromise: "./src/pages/myPromise",
     myString: "./src/pages/myString",
@@ -57,6 +58,11 @@ module.exports = {
       filename: "chart/index.html",
       chunks: ["chart"],
       template: "./src/pages/chart/index.html",
+    }),
+    new HtmlWebpackPlugin({
+      filename: "drag/index.html",
+      chunks: ["drag"],
+      template: "./src/pages/drag/index.html",
     }),
     new HtmlWebpackPlugin({
       filename: "myArray/index.html",
