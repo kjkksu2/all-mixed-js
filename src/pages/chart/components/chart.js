@@ -151,9 +151,6 @@ class Chart extends Configuration {
       this.ctx.fill();
       this.ctx.stroke();
     }
-
-    // redraw x-axis
-    this.xAxis();
   }
 }
 
