@@ -6,7 +6,7 @@ module.exports = {
   entry: {
     chart: "./src/pages/chart",
     drag: "./src/pages/drag",
-    flappyBird: "./src/pages/flappyBird",
+    flappyMonster: "./src/pages/flappyMonster",
     myArray: "./src/pages/myArray",
     myPromise: "./src/pages/myPromise",
     myString: "./src/pages/myString",
@@ -66,9 +66,9 @@ module.exports = {
       template: "./src/pages/drag/index.html",
     }),
     new HtmlWebpackPlugin({
-      filename: "flappyBird/index.html",
-      chunks: ["flappyBird"],
-      template: "./src/pages/flappyBird/index.html",
+      filename: "flappyMonster/index.html",
+      chunks: ["flappyMonster"],
+      template: "./src/pages/flappyMonster/index.html",
     }),
     new HtmlWebpackPlugin({
       filename: "myArray/index.html",
