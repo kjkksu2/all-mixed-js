@@ -11,7 +11,6 @@ module.exports = {
     myPromise: "./src/pages/myPromise",
     myString: "./src/pages/myString",
     polygon: "./src/pages/polygon",
-    canvas: "./src/pages/canvas",
   },
   output: {
     path: path.join(__dirname, "../dist"),
@@ -90,17 +89,5 @@ module.exports = {
       chunks: ["polygon"],
       template: "./src/pages/polygon/index.html",
     }),
-    // new HtmlWebpackPlugin({
-    //   filename: "index.html",
-    //   chunks: ["global", "navigation"],
-    //   title: "Home",
-    //   template: "./src/pages/custom/template.html",
-    // }),
-    // new HtmlWebpackPlugin({
-    //   filename: "canvas/index.html",
-    //   chunks: ["global", "navigation", "canvas"],
-    //   title: "Canvas",
-    //   template: "./src/pages/canvas/template.html",
-    // }),
   ],
 };

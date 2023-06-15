@@ -1,8 +1,6 @@
 import "./styles.css";
 
-/* <li>
-<a href="/canvas">canvas</a>
-</li>
+/* 
 <li>
 <a href="/optimization">optimization</a>
 </li>
