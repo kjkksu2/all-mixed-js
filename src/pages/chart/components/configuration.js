@@ -7,8 +7,8 @@ class Configuration {
     this.canvas = canvas;
     this.ctx = this.canvas.getContext("2d");
 
-    this.canvas.width = 700;
-    this.canvas.height = 400;
+    this.canvas.width = 800;
+    this.canvas.height = 500;
 
     this.refineData();
     this.init();

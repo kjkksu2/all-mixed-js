@@ -27,6 +27,9 @@ const nav = `
             <a href="/drag">drag</a>
           </li>
           <li>
+            <a href="/flappyMonster">flappyMonster</a>
+          </li>
+          <li>
             <a href="/myArray">myArray</a>
           </li>
           <li>
