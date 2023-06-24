@@ -1,8 +1,28 @@
 import DomElements from "./domElements";
 
-import { prototypeList, staticList } from "./data";
-
 class Dropdown extends DomElements {
+  prototypeList = [
+    "concat",
+    "every",
+    "fill",
+    "filter",
+    "find",
+    "findIndex",
+    "flat",
+    "forEach",
+    "includes",
+    "join",
+    "map",
+    "pop",
+    "push",
+    "reduce",
+    "shift",
+    "slice",
+    "some",
+    "unshift",
+  ];
+  staticList = ["from", "isArray", "of"];
+
   constructor(init) {
     super();
     this.init = init;
@@ -13,7 +33,7 @@ class Dropdown extends DomElements {
 
   createOptions() {
     const fragment = document.createDocumentFragment();
-    const list = [...prototypeList, ...staticList];
+    const list = [...this.prototypeList, ...this.staticList];
 
     list.forEach((v) => {
       const div = document.createElement("div");

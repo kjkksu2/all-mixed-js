@@ -17,7 +17,7 @@ module.exports = merge(common, {
       writeToDisk: true,
     },
     client: { overlay: true },
-    liveReload: false,
+    liveReload: true,
     historyApiFallback: true,
   },
   module: {

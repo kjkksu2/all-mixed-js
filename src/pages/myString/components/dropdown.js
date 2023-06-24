@@ -1,8 +1,22 @@
 import DomElements from "./domElements";
 
-import { prototypeList } from "./data";
-
 class Dropdown extends DomElements {
+  prototypeList = [
+    "endsWith",
+    "indexOf",
+    "padEnd",
+    "padStart",
+    "repeat",
+    "split",
+    "startsWith",
+    "substring",
+    "toLowerCase",
+    "toUpperCase",
+    "trim",
+    "trimEnd",
+    "trimStart",
+  ];
+
   constructor(init) {
     super();
     this.init = init;
@@ -13,7 +27,7 @@ class Dropdown extends DomElements {
 
   createOptions() {
     const fragment = document.createDocumentFragment();
-    const list = [...prototypeList];
+    const list = [...this.prototypeList];
 
     list.forEach((v) => {
       const div = document.createElement("div");

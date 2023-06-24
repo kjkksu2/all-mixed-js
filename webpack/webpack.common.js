@@ -1,6 +1,7 @@
 const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const CopyPlugin = require("copy-webpack-plugin");
 
 module.exports = {
   entry: {
@@ -40,7 +41,7 @@ module.exports = {
       },
       {
         test: /\.txt$/,
-        type: "asset/resource",
+        type: "asset",
         generator: {
           filename: (pathData) => {
             const directoryName = path.dirname(pathData.filename).split("/")[2];
@@ -57,6 +58,26 @@ module.exports = {
   },
   plugins: [
     new CleanWebpackPlugin(),
+    new CopyPlugin({
+      patterns: [
+        {
+          from: "src/pages/myArray/examples/prototype",
+          to: "myArray/examples",
+        },
+        {
+          from: "src/pages/myArray/examples/static",
+          to: "myArray/examples",
+        },
+        {
+          from: "src/pages/myPromise/examples",
+          to: "myPromise/examples",
+        },
+        {
+          from: "src/pages/myString/examples/prototype",
+          to: "myString/examples",
+        },
+      ],
+    }),
     new HtmlWebpackPlugin({
       filename: "chart/index.html",
       chunks: ["chart"],

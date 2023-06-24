@@ -1,8 +1,8 @@
 import DomElements from "./domElements";
 
-import { promiseList } from "./data";
-
 class Dropdown extends DomElements {
+  promiseList = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"];
+
   constructor(init) {
     super();
     this.init = init;
@@ -13,7 +13,7 @@ class Dropdown extends DomElements {
 
   createOptions() {
     const fragment = document.createDocumentFragment();
-    const list = [...promiseList];
+    const list = [...this.promiseList];
 
     list.forEach((v) => {
       const div = document.createElement("div");
