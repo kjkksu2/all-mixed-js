@@ -32,7 +32,10 @@ module.exports = {
           },
         },
         generator: {
-          filename: "canvas/[name][ext]",
+          filename: (pathData) => {
+            const directoryName = path.dirname(pathData.filename).split("/")[2];
+            return `${directoryName}/images/[name][ext]`;
+          },
         },
       },
       {
@@ -40,14 +43,14 @@ module.exports = {
         type: "asset/resource",
         generator: {
           filename: (pathData) => {
-            const filePath = path.dirname(pathData.filename).split("/")[2];
-            return `${filePath}/[name][ext]`;
+            const directoryName = path.dirname(pathData.filename).split("/")[2];
+            return `${directoryName}/examples/[name][ext]`;
           },
         },
       },
       {
         test: /\.js$/,
-        exclude: /(node_modules)/,
+        exclude: /node_modules/,
         loader: "babel-loader",
       },
     ],

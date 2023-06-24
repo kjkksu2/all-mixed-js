@@ -1,16 +1,14 @@
 {
   "env": {
-    "development": {
-      "presets": ["@babel/preset-env"]
-    },
+    "development": { "presets": ["@babel/preset-env"] },
     "production": {
       "presets": [
         [
           "@babel/preset-env",
           {
             "useBuiltIns": "usage",
-            "corejs": { "version": 3, "proposals": true },
-            "debug": true
+            "corejs": { "version": 3, "proposals": true }
+            // "debug": true
           }
         ]
       ]

@@ -45,8 +45,8 @@ class Dropdown extends DomElements {
   }
 
   async example() {
-    return await fetch(`./myArray/${this.selected}.txt`).then((response) =>
-      response.text()
+    return await fetch(`./myArray/examples/${this.selected}.txt`).then(
+      (response) => response.text()
     );
   }
 }

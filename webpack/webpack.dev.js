@@ -7,7 +7,7 @@ module.exports = merge(common, {
     filename: "[name]/bundle.js",
   },
   mode: "development",
-  devtool: "eval-cheap-source-map",
+  devtool: "source-map",
   devServer: {
     port: 3000,
     hot: true,
@@ -19,7 +19,6 @@ module.exports = merge(common, {
     client: { overlay: true },
     liveReload: false,
     historyApiFallback: true,
-    // open: true,
   },
   module: {
     rules: [
