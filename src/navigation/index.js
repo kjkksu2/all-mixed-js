@@ -10,6 +10,7 @@ import "./styles.css";
 <li>
 <a href="#">react</a>
 </li> */
+// chatbot
 
 const nav = `
     <header>
@@ -35,6 +36,9 @@ const nav = `
           </li>
           <li>
             <a href="/myPromise">myPromise</a>
+          </li>
+          <li>
+            <a href="/pingPong">pingPong</a>
           </li>
           <li>
             <a href="/polygon">polygon</a>

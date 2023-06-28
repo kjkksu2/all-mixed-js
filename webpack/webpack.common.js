@@ -11,6 +11,7 @@ module.exports = {
     myArray: "./src/pages/myArray",
     myPromise: "./src/pages/myPromise",
     myString: "./src/pages/myString",
+    pingPong: "./src/pages/pingPong",
     polygon: "./src/pages/polygon",
   },
   output: {
@@ -107,6 +108,11 @@ module.exports = {
       filename: "myString/index.html",
       chunks: ["myString"],
       template: "./src/pages/myString/index.html",
+    }),
+    new HtmlWebpackPlugin({
+      filename: "pingPong/index.html",
+      chunks: ["pingPong"],
+      template: "./src/pages/pingPong/index.html",
     }),
     new HtmlWebpackPlugin({
       filename: "polygon/index.html",
